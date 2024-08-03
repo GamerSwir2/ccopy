@@ -6,7 +6,7 @@ function copyTextCheaty() {
     const formattedText = `/tempban ${inputText} 7d cheaty //${nickname}`;
     
     copyToClipboard(formattedText);
-    addToBanList(formattedText);
+    addToBanList(formattedText, nickname);
 }
 
 function copyTextKopanieAFK() {
@@ -15,7 +15,7 @@ function copyTextKopanieAFK() {
     const formattedText = `/tempban ${inputText} 7d kopanie afk //${nickname}`;
     
     copyToClipboard(formattedText);
-    addToBanList(formattedText);
+    addToBanList(formattedText, nickname);
 }
 
 function copyTextscamdc() {
@@ -24,7 +24,7 @@ function copyTextscamdc() {
     const formattedText = `/tempbanip ${inputText} 365d scam dc //${nickname}`;
     
     copyToClipboard(formattedText);
-    addToBanList(formattedText);
+    addToBanList(formattedText, nickname);
 }
 
 function copyTextcashset() {
@@ -33,7 +33,7 @@ function copyTextcashset() {
     const formattedText = `/cashsetv2 ${inputText} set 0 //gc1`;
     
     copyToClipboard(formattedText);
-    addToCashsetList(formattedText);
+    addToCashsetList(formattedText, nickname);
 }
 
 function copyTextcashset2() {
@@ -42,7 +42,7 @@ function copyTextcashset2() {
     const formattedText = `/cashsetv2 ${inputText} set 0 //gc2`;
     
     copyToClipboard(formattedText);
-    addToCashsetList(formattedText);
+    addToCashsetList(formattedText, nickname);
 }
 
 function copyTextcashsetmoney() {
@@ -51,34 +51,34 @@ function copyTextcashsetmoney() {
     const formattedText = `/cashset ${inputText} 0 //MoneySMP`;
     
     copyToClipboard(formattedText);
-    addToCashsetList(formattedText);
+    addToCashsetList(formattedText, nickname);
 }
 
 function copyToClipboard(text) {
-    // Tworzenie tymczasowego pola tekstowego
     const tempInput = document.createElement('input');
     tempInput.value = text;
     document.body.appendChild(tempInput);
 
-    // Zaznaczenie i skopiowanie tekstu
     tempInput.select();
-    tempInput.setSelectionRange(0, 99999); // Dla urządzeń mobilnych
+    tempInput.setSelectionRange(0, 99999); // For mobile devices
 
     document.execCommand('copy');
     document.body.removeChild(tempInput);
 
-    // Wyświetlenie komunikatu
     const messageElement = document.getElementById('message');
-    messageElement.innerText = `Tekst skopiowany dla ${document.getElementById('nicknameInput').value}!`;
+    const nickname = document.getElementById('nicknameInput').value;
+    messageElement.innerText = `Tekst skopiowany dla ${nickname}!`;
     messageElement.style.opacity = 1;
 
-    // Ukrycie komunikatu po 2 sekundach
     setTimeout(() => {
         messageElement.style.opacity = 0;
     }, 2000);
+
+    // Save nickname to cookie
+    document.cookie = `nickname=${nickname}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
 }
 
-function addToBanList(text) {
+function addToBanList(text, nickname) {
     const list = document.getElementById('banList');
     const listItem = document.createElement('li');
     listItem.textContent = text;
@@ -86,7 +86,7 @@ function addToBanList(text) {
     saveBanList();
 }
 
-function addToCashsetList(text) {
+function addToCashsetList(text, nickname) {
     const list = document.getElementById('cashsetList');
     const listItem = document.createElement('li');
     listItem.textContent = text;
@@ -115,8 +115,9 @@ function saveBanList() {
         itemArray.push(items[i].textContent);
     }
 
-    // Zapis do ciasteczka
+    const nickname = document.getElementById('nicknameInput').value;
     document.cookie = `banList=${JSON.stringify(itemArray)}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+    document.cookie = `banListNickname=${nickname}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
 }
 
 function saveCashsetList() {
@@ -128,15 +129,18 @@ function saveCashsetList() {
         itemArray.push(items[i].textContent);
     }
 
-    // Zapis do ciasteczka
+    const nickname = document.getElementById('nicknameInput').value;
     document.cookie = `cashsetList=${JSON.stringify(itemArray)}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+    document.cookie = `cashsetListNickname=${nickname}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
 }
 
 function loadLists() {
     const banListCookie = getCookie('banList');
+    const banListNicknameCookie = getCookie('banListNickname');
     const cashsetListCookie = getCookie('cashsetList');
+    const cashsetListNicknameCookie = getCookie('cashsetListNickname');
     
-    if (banListCookie) {
+    if (banListCookie && banListNicknameCookie) {
         const itemArray = JSON.parse(banListCookie);
         const list = document.getElementById('banList');
 
@@ -145,9 +149,11 @@ function loadLists() {
             listItem.textContent = itemArray[i];
             list.appendChild(listItem);
         }
+
+        document.getElementById('nicknameInput').value = banListNicknameCookie;
     }
     
-    if (cashsetListCookie) {
+    if (cashsetListCookie && cashsetListNicknameCookie) {
         const itemArray = JSON.parse(cashsetListCookie);
         const list = document.getElementById('cashsetList');
 
@@ -156,10 +162,11 @@ function loadLists() {
             listItem.textContent = itemArray[i];
             list.appendChild(listItem);
         }
+
+        document.getElementById('nicknameInput').value = cashsetListNicknameCookie;
     }
 }
 
-// Funkcja do pobierania wartości z ciasteczka
 function getCookie(name) {
     const cookieValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return cookieValue ? cookieValue[2] : null;
