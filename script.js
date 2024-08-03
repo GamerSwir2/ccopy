@@ -1,3 +1,5 @@
+// JavaScript code for managing banned users list, cashset list, and download functions
+
 document.addEventListener('DOMContentLoaded', loadLists);
 
 function copyTextCheaty() {
@@ -172,6 +174,27 @@ function getCookie(name) {
     return cookieValue ? cookieValue[2] : null;
 }
 
+function downloadBanList() {
+    const list = document.getElementById('banList');
+    const items = list.getElementsByTagName('li');
+    const itemArray = [];
+
+    for (let i = 0; i < items.length; i++) {
+        itemArray.push(items[i].textContent);
+    }
+
+    const textToSave = itemArray.join('\n');
+    const blob = new Blob([textToSave], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'ban_list.txt';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
+
 function downloadCashsetList() {
     const list = document.getElementById('cashsetList');
     const items = list.getElementsByTagName('li');
@@ -192,3 +215,7 @@ function downloadCashsetList() {
     a.click();
     window.URL.revokeObjectURL(url);
 }
+
+// Event listener for loading lists on DOM content load
+document.addEventListener('DOMContentLoaded', loadLists);
+

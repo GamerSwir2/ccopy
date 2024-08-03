@@ -98,7 +98,12 @@ input {
     margin-top: 20px;
 }
 
-.button.download {
+.button.downloadcashset {
+    background-color: #1abc9c;
+    margin-top: 20px;
+}
+
+.button.downloadban {
     background-color: #1abc9c;
     margin-top: 20px;
 }
