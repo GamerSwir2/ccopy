@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CraftCube - kopiowanko</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h1>CraftCube - kopiowanko</h1>
+            <!-- Input do wprowadzania tekstu -->
+            <input type="text" id="inputText" placeholder="Wpisz coś...">
+            <!-- Input do wprowadzania nickname'u -->
+            <input type="text" id="nicknameInput" placeholder="Podaj nickname...">
+            <h2>Bany:</h2>
+            <button class="button cheaty" onclick="copyTextCheaty()">
+                <span class="icon">🚫</span> Ban - Cheaty
+            </button>
+            <button class="button cheaty" onclick="copyTextscamdc()">
+                <span class="icon">🚫</span> Ban - scamDC
+            </button>
+            <button class="button kopanie-afk" onclick="copyTextKopanieAFK()">
+                <span class="icon">⛏️</span> Ban - Kopanie AFK
+            </button>
+            <h2>Reset hajsu:</h2>
+            <button class="button cashset" onclick="copyTextcashset()">
+                <span class="icon">💸</span> Cashset - GC1
+            </button>
+            <button class="button cashset" onclick="copyTextcashset2()">
+                <span class="icon">💸</span> Cashset - GC2
+            </button>
+            <button class="button cashset" onclick="copyTextcashsetmoney()">
+                <span class="icon">💸</span> Cashset - MoneySmp
+            </button>
+            <p id="message"></p>
+        </div>
+        <div class="right">
+            <h2>Lista Banów:</h2>
+            <ul id="banList"></ul>
+            <button class="button clear" onclick="clearBanList()">Wyczyść listę</button>
+        </div>
+        <div class="right">
+            <h2>Lista Cashset:</h2>
+            <ul id="cashsetList"></ul>
+            <button class="button clear" onclick="clearCashsetList()">Wyczyść listę</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
