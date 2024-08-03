@@ -98,6 +98,11 @@ input {
     margin-top: 20px;
 }
 
+.button.download {
+    background-color: #1abc9c;
+    margin-top: 20px;
+}
+
 .button.clear:hover {
     background-color: #c0392b;
 }
