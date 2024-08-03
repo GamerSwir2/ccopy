@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', loadLists);
 function copyTextCheaty() {
     const inputText = document.getElementById('inputText').value;
     const nickname = document.getElementById('nicknameInput').value;
-    const formattedText = `/tempban ${inputText} 7d cheaty //${nickname}`;
+    const formattedText = `/tempban ${inputText} 7d cheaty // ${nickname}`;
     
     copyToClipboard(formattedText);
     addToBanList(formattedText, nickname);
@@ -12,7 +12,7 @@ function copyTextCheaty() {
 function copyTextKopanieAFK() {
     const inputText = document.getElementById('inputText').value;
     const nickname = document.getElementById('nicknameInput').value;
-    const formattedText = `/tempban ${inputText} 7d kopanie afk //${nickname}`;
+    const formattedText = `/tempban ${inputText} 7d kopanie afk // ${nickname}`;
     
     copyToClipboard(formattedText);
     addToBanList(formattedText, nickname);
@@ -21,7 +21,7 @@ function copyTextKopanieAFK() {
 function copyTextscamdc() {
     const inputText = document.getElementById('inputText').value;
     const nickname = document.getElementById('nicknameInput').value;
-    const formattedText = `/tempbanip ${inputText} 365d scam dc //${nickname}`;
+    const formattedText = `/tempbanip ${inputText} 365d scam dc // ${nickname}`;
     
     copyToClipboard(formattedText);
     addToBanList(formattedText, nickname);
@@ -30,7 +30,7 @@ function copyTextscamdc() {
 function copyTextcashset() {
     const inputText = document.getElementById('inputText').value;
     const nickname = document.getElementById('nicknameInput').value;
-    const formattedText = `/cashsetv2 ${inputText} set 0 //gc1`;
+    const formattedText = `/cashsetv2 ${inputText} set 0 // gc1`;
     
     copyToClipboard(formattedText);
     addToCashsetList(formattedText, nickname);
@@ -39,7 +39,7 @@ function copyTextcashset() {
 function copyTextcashset2() {
     const inputText = document.getElementById('inputText').value;
     const nickname = document.getElementById('nicknameInput').value;
-    const formattedText = `/cashsetv2 ${inputText} set 0 //gc2`;
+    const formattedText = `/cashsetv2 ${inputText} set 0 // gc2`;
     
     copyToClipboard(formattedText);
     addToCashsetList(formattedText, nickname);
@@ -48,7 +48,7 @@ function copyTextcashset2() {
 function copyTextcashsetmoney() {
     const inputText = document.getElementById('inputText').value;
     const nickname = document.getElementById('nicknameInput').value;
-    const formattedText = `/cashset ${inputText} 0 //MoneySMP`;
+    const formattedText = `/cashset ${inputText} 0 // MoneySMP`;
     
     copyToClipboard(formattedText);
     addToCashsetList(formattedText, nickname);
@@ -67,7 +67,7 @@ function copyToClipboard(text) {
 
     const messageElement = document.getElementById('message');
     const nickname = document.getElementById('nicknameInput').value;
-    messageElement.innerText = `Tekst skopiowany dla ${nickname}!`;
+    messageElement.innerText = `Tekst skopiowany do schowka dla ${nickname}!`;
     messageElement.style.opacity = 1;
 
     setTimeout(() => {
